@@ -60,7 +60,7 @@ jobs:
   CD_PROD2:
     needs: CD_NPE
     if: |
-      contains(github.event.inputs.environments, 'prod2') || github.event_name == 'push' && github.ref == 'refs/heads/main'
+      contains(github.event.inputs.environments, 'prod2') || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
