@@ -24,14 +24,12 @@ jobs:
 
   CD_PROD1:
     needs: CD_NPE
-    environment: production1
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
 
   CD_PROD2:
     needs: CD_NPE
-    environment: production2
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
