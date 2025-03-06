@@ -12,3 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "${{ inputs.message }}"
+      - run: printenv
