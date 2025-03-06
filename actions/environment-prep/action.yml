@@ -19,6 +19,10 @@ runs:
       run: echo "${{ inputs.message }}"
       shell: bash
 
+    - name: List directories
+      run: ls -R
+      shell: bash
+
     # Optional Step: Running a custom script
     - name: Run a custom script
       run: ./scripts/script.sh
