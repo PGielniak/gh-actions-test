@@ -19,8 +19,8 @@ runs:
       run: echo "${{ inputs.message }}"
       shell: bash
 
-    - name: List directories
-      run: ls -R
+    - name: Give permissions
+      run: chmod +x ./actions/environment-prep/scripts/script.sh
       shell: bash
 
     # Optional Step: Running a custom script
