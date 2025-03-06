@@ -28,7 +28,7 @@ jobs:
   CD_DEV:
     needs: CI
     if: |
-      contains(github.event.inputs.environments, 'lab') || github.event_name == 'push'
+      contains(github.event.inputs.environments, 'lab') || github.event_name == 'push' && github.ref == 'refs/heads/main'
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -39,7 +39,7 @@ jobs:
   CD_NPE:
     needs: CD_DEV
     if: |
-      contains(github.event.inputs.environments, 'npe') || github.event_name == 'push'
+      contains(github.event.inputs.environments, 'npe') || github.event_name == 'push' && github.ref == 'refs/heads/main'
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -50,7 +50,7 @@ jobs:
   CD_PROD1:
     needs: CD_NPE
     if: |
-      contains(github.event.inputs.environments, 'prod1') || github.event_name == 'push'
+      contains(github.event.inputs.environments, 'prod1') || github.event_name == 'push' && github.ref == 'refs/heads/main'
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
@@ -60,7 +60,7 @@ jobs:
   CD_PROD2:
     needs: CD_NPE
     if: |
-      contains(github.event.inputs.environments, 'prod2') || github.event_name == 'push'
+      contains(github.event.inputs.environments, 'prod2') || github.event_name == 'push' && github.ref == 'refs/heads/main'
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
