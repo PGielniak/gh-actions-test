@@ -1,0 +1,14 @@
+name: build
+on:
+  workflow_call:  # allows to be called by another workflow
+    inputs: # parameters
+      message:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "${{ inputs.build_command }}"
