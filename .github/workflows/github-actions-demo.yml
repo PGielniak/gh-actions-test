@@ -28,7 +28,7 @@ jobs:
   CD_DEV:
     needs: CI
     if: |
-      contains(github.event.inputs.environments, 'lab') || github.event_name == 'push' && github.ref == 'refs/heads/main'
+      contains(github.event.inputs.environments, 'dev') || github.event_name == 'push' && github.ref == 'refs/heads/main'
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
