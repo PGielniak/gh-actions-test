@@ -15,6 +15,7 @@ jobs:
     with:
         message: "Hello from CD_DEV"
         env_prep_msg: "hello NPE env prep"
+        environment: dev
 
   CD_NPE:
     needs: CD_DEV
@@ -23,6 +24,7 @@ jobs:
     with:
         message: "Hello from CD_NPE"
         env_prep_msg: "hello NPE env prep"
+        environment: npe
 
   CD_PROD1:
     needs: CD_NPE
@@ -30,6 +32,7 @@ jobs:
     with:
         message: "Hello from CD_PROD1"
         env_prep_msg: "hello prod env prep"
+        environment: prod1
 
   CD_PROD2:
     needs: CD_NPE
@@ -37,6 +40,7 @@ jobs:
     with:
         message: "Hello from CD_PROD2"
         env_prep_msg: "hello prod2 env prep"
+        environment: prod2
 
 
     # - uses: ./.github/workflows/ci.yml
