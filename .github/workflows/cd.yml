@@ -8,12 +8,12 @@ on:
       env_prep_msg:
         required: true
         type: string
-      infra_msg:
-        required: true
-        type: string
-      deployment_msg:
-        required: true
-        type: string
+      # infra_msg:
+      #   required: true
+      #   type: string
+      # deployment_msg:
+      #   required: true
+      #   type: string
 
 jobs:
   build:
