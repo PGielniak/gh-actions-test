@@ -19,6 +19,20 @@ on:
 
 
 jobs:
+
+  SET_DEFAULTS:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set default environments
+        id: set_defaults
+        run: |
+          # If no environments are provided, use a default value
+          if [ -z "${{ github.event.inputs.environments }}" ]; then
+            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_ENV
+          fi
   CI:
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
