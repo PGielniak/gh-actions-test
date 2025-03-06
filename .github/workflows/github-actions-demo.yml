@@ -2,12 +2,37 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  CI:
     steps:
     - uses: ./.github/workflows/ci.yml
       with:
         message: "Hello from CI"
+
+  CD_DEV:
+    needs: CI
+    uses: ./.github/workflows/ci.yml
+    with:
+      message: "Hello from CD_DEV"
+
+  CD_LAB:
+    needs: CD_DEV
+    uses: ./.github/workflows/ci.yml
+    with:
+      message: "Hello from CD_LAB"
+
+  CD_EUN_PROD:
+  needs: CD_LAB
+  uses: ./.github/workflows/ci.yml
+  with:
+    message: "Hello from CD_EUN_PROD"
+
+  CD_UKS_PROD:
+  needs: CD_LAB
+  uses: ./.github/workflows/ci.yml
+  with:
+    message: "Hello from CD_UKS_PROD"
+
+
     # - uses: ./.github/workflows/ci.yml
     #   with:
     #     message: "Hello from Next step"
