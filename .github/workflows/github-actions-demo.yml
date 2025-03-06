@@ -15,7 +15,7 @@ on:
       environments:
         description: 'The message to display'
         required: true
-        default: 'dev,npe,prod,prod2'
+        default: 'dev,npe,prod1,prod2'
 
 
 jobs:
