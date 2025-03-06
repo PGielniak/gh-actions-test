@@ -47,7 +47,7 @@ jobs:
 
   CD_DEV:
     needs: CI
-    if: ${{ contains(needs.set-defaults.outputs.environments, 'dev') }}
+    if: ${{ contains(needs.set_defaults.outputs.environments, 'dev') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -57,7 +57,7 @@ jobs:
 
   CD_NPE:
     needs: CD_DEV
-    if: ${{ contains(needs.set-defaults.outputs.environments, 'npe') }}
+    if: ${{ contains(needs.set_defaults.outputs.environments, 'npe') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -67,7 +67,7 @@ jobs:
 
   CD_PROD1:
     needs: CD_NPE
-    if: ${{ contains(needs.set-defaults.outputs.environments, 'prod1') }}
+    if: ${{ contains(needs.set_defaults.outputs.environments, 'prod1') }}
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
@@ -76,7 +76,7 @@ jobs:
 
   CD_PROD2:
     needs: CD_NPE
-    if: ${{ contains(needs.set-defaults.outputs.environments, 'prod2') }}
+    if: ${{ contains(needs.set_defaults.outputs.environments, 'prod2') }}
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
