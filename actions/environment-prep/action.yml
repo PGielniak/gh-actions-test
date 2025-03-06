@@ -25,5 +25,5 @@ runs:
 
     # Optional Step: Running a custom script
     - name: Run a custom script
-      run: ./scripts/script.sh
+      run: ./actions/environment-prep/scripts/script.sh
       shell: bash
