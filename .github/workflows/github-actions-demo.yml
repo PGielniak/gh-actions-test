@@ -21,16 +21,16 @@ jobs:
       message: "Hello from CD_LAB"
 
   CD_EUN_PROD:
-  needs: CD_LAB
-  uses: ./.github/workflows/ci.yml
-  with:
-    message: "Hello from CD_EUN_PROD"
+    needs: CD_LAB
+    uses: ./.github/workflows/ci.yml
+    with:
+      message: "Hello from CD_EUN_PROD"
 
   CD_UKS_PROD:
-  needs: CD_LAB
-  uses: ./.github/workflows/ci.yml
-  with:
-    message: "Hello from CD_UKS_PROD"
+    needs: CD_LAB
+    uses: ./.github/workflows/ci.yml
+    with:
+      message: "Hello from CD_UKS_PROD"
 
 
     # - uses: ./.github/workflows/ci.yml
