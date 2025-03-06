@@ -15,39 +15,19 @@ on:
       environments:
         description: 'The message to display'
         required: true
-        default: 'dev,npe,prod2'
+        default: 'dev,npe,prod,prod2'
 
 
 jobs:
 
-  SET_DEFAULTS:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set default environments
-        id: set_defaults
-        run: |
-          # If no environments are provided, use a default value
-          if [ -z "${{ github.event.inputs.environments }}" ]; then
-            echo "ENVIRONMENT ARE EMPTY, SETTING DEFAULT VALUE"
-            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_ENV
-            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_OUTPUT
-          else
-            echo "PROVIDED ENVIRONMENTS: ${{ github.event.inputs.environments }} "
-            echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_ENV
-            echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_OUTPUT
-          fi
   CI:
-    needs: SET_DEFAULTS
     uses: ./.github/workflows/ci.yml
     with:
         message: "Hello from CI"
 
   CD_DEV:
-    needs: [CI, SET_DEFAULTS]
-    if: ${{ contains(needs.SET_DEFAULTS.outputs.environments, 'dev') }}
+    needs: CI
+    if: contains(inputs.environments, 'dev')
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -57,7 +37,7 @@ jobs:
 
   CD_NPE:
     needs: CD_DEV
-    if: ${{ contains(needs.set_defaults.outputs.environments, 'npe') }}
+    if: contains(inputs.environments, 'npe')
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -67,7 +47,7 @@ jobs:
 
   CD_PROD1:
     needs: CD_NPE
-    if: ${{ contains(needs.set_defaults.outputs.environments, 'prod1') }}
+    if: contains(inputs.environments, 'prod1')
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
@@ -76,7 +56,7 @@ jobs:
 
   CD_PROD2:
     needs: CD_NPE
-    if: ${{ contains(needs.set_defaults.outputs.environments, 'prod2') }}
+    if: contains(inputs.environments, 'prod2')
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
