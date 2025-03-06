@@ -10,27 +10,31 @@ jobs:
 
   CD_DEV:
     needs: CI
-    uses: ./.github/workflows/ci.yml
-    with:
-      message: "Hello from CD_DEV"
+    steps:
+    -  uses: ./.github/workflows/ci.yml
+      with:
+        message: "Hello from CD_DEV"
 
-  CD_LAB:
+  CD_NPE:
     needs: CD_DEV
-    uses: ./.github/workflows/ci.yml
-    with:
-      message: "Hello from CD_LAB"
+    steps:
+    -  uses: ./.github/workflows/ci.yml
+      with:
+        message: "Hello from CD_NPE"
 
-  CD_EUN_PROD:
-    needs: CD_LAB
-    uses: ./.github/workflows/ci.yml
-    with:
-      message: "Hello from CD_EUN_PROD"
+  CD_PROD1:
+    needs: CD_NPE
+    steps:
+    -  uses: ./.github/workflows/ci.yml
+      with:
+        message: "Hello from CD_PROD1"
 
-  CD_UKS_PROD:
-    needs: CD_LAB
-    uses: ./.github/workflows/ci.yml
-    with:
-      message: "Hello from CD_UKS_PROD"
+  CD_PROD2:
+    needs: CD_NPE
+    steps:
+    -  uses: ./.github/workflows/ci.yml
+      with:
+        message: "Hello from CD_PROD2"
 
 
     # - uses: ./.github/workflows/ci.yml
