@@ -31,8 +31,8 @@ jobs:
         run: |
           # If no environments are provided, use a default value
           if [ -z "${{ github.event.inputs.environments }}" ]; then
-            echo "environments=staging,production" >> $GITHUB_ENV
-            echo "environments=staging,production" >> $GITHUB_OUTPUT
+            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_ENV
+            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_OUTPUT
           else
             echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_ENV
             echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_OUTPUT
@@ -48,7 +48,6 @@ jobs:
     if: ${{ contains(needs.set-defaults.outputs.environments, 'dev') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
-
     with:
         message: "Hello from CD_DEV"
         env_prep_msg: "hello DEV with approva; env prep"
