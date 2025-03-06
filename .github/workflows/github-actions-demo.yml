@@ -46,8 +46,8 @@ jobs:
         message: "Hello from CI"
 
   CD_DEV:
-    needs: CI
-    if: ${{ contains(needs.set_defaults.outputs.environments, 'dev') }}
+    needs: [CI, SET_DEFAULTS]
+    if: ${{ contains(needs.SET_DEFAULTS.outputs.environments, 'dev') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
