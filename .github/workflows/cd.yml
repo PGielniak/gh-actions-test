@@ -7,6 +7,7 @@ on:
         type: string
       environment:
         required: true
+        type: string
       env_prep_msg:
         required: true
         type: string
