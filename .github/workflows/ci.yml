@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "${{ inputs.message }}"
-      - run: printenv
+      - run: env
       - run: cat $GITHUB_ENV
       - run: cat $GITHUB_OUTPUT
