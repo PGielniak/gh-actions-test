@@ -31,7 +31,11 @@ jobs:
         run: |
           # If no environments are provided, use a default value
           if [ -z "${{ github.event.inputs.environments }}" ]; then
-            echo "environments=dev,npe,prod1,prod2" >> $GITHUB_ENV
+            echo "environments=staging,production" >> $GITHUB_ENV
+            echo "environments=staging,production" >> $GITHUB_OUTPUT
+          else
+            echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_ENV
+            echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_OUTPUT
           fi
   CI:
     # runs-on: ubuntu-latest
@@ -41,7 +45,7 @@ jobs:
 
   CD_DEV:
     needs: CI
-    if: ${{ contains(github.event.inputs.environments, 'dev') }}
+    if: ${{ contains(needs.set-defaults.outputs.environments, 'dev') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
 
@@ -52,7 +56,7 @@ jobs:
 
   CD_NPE:
     needs: CD_DEV
-    if: ${{ contains(github.event.inputs.environments, 'npe') }}
+    if: ${{ contains(needs.set-defaults.outputs.environments, 'npe') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
     with:
@@ -62,7 +66,7 @@ jobs:
 
   CD_PROD1:
     needs: CD_NPE
-    if: ${{ contains(github.event.inputs.environments, 'prod1') }}
+    if: ${{ contains(needs.set-defaults.outputs.environments, 'prod1') }}
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
@@ -71,7 +75,7 @@ jobs:
 
   CD_PROD2:
     needs: CD_NPE
-    if: ${{ contains(github.event.inputs.environments, 'prod2') }}
+    if: ${{ contains(needs.set-defaults.outputs.environments, 'prod2') }}
     uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
