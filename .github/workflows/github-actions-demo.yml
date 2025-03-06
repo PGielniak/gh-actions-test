@@ -11,7 +11,7 @@ jobs:
   CD_DEV:
     needs: CI
     # runs-on: ubuntu-latest
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_DEV"
         env_prep_msg: "hello NPE env prep"
