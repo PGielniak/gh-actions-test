@@ -3,38 +3,38 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   CI:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
     with:
-        message: "Hello from CI"
+      message: "Hello from CI"
 
   CD_DEV:
     needs: CI
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
     with:
-        message: "Hello from CD_DEV"
+      message: "Hello from CD_DEV"
 
   CD_NPE:
     needs: CD_DEV
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
     with:
-        message: "Hello from CD_NPE"
+      message: "Hello from CD_NPE"
 
   CD_PROD1:
     needs: CD_NPE
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
     with:
-        message: "Hello from CD_PROD1"
+      message: "Hello from CD_PROD1"
 
   CD_PROD2:
     needs: CD_NPE
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     uses: ./.github/workflows/ci.yml
     with:
-        message: "Hello from CD_PROD2"
+      message: "Hello from CD_PROD2"
 
 
     # - uses: ./.github/workflows/ci.yml
