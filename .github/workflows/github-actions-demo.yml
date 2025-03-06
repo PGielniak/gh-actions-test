@@ -7,6 +7,6 @@ jobs:
     uses: ./.github/workflows/ci.yml
     with:
       message: "Hello from CI"
-    uses: ./.github/workflows/ci.yml
-    with:
-      message: "Hello from Next step"
+    # uses: ./.github/workflows/ci.yml
+    # with:
+    #   message: "Hello from Next step"
