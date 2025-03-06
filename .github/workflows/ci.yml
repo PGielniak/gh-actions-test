@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo "${{ inputs.message }}"
       - run: env
-      - run: cat ${GITHUB_ENV}
-      - run: cat ${GITHUB_OUTPUT}
+      - run: echo "${{ needs.SET_DEFAULTS.outputs.environments }}"
+      - run: echo "${{ needs.SET_DEFAULTS.outputs }}"
