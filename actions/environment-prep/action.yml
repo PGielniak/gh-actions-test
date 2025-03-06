@@ -17,7 +17,9 @@ runs:
     # Step 2: Display message
     - name: Print message
       run: echo "${{ inputs.message }}"
+      shell: bash
 
     # Optional Step: Running a custom script
     - name: Run a custom script
       run: ./scripts/script.sh
+      shell: bash
