@@ -55,7 +55,7 @@ jobs:
         environment: dev
 
   CD_NPE:
-    needs: CD_DEV
+    needs: CD_DEV, SET_DEFAULTS
     if: ${{ contains(needs.set-defaults.outputs.environments, 'npe') }}
     # runs-on: ubuntu-latest
     uses: ./.github/workflows/cd.yml
