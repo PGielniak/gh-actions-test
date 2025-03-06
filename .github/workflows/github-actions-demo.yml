@@ -12,28 +12,28 @@ jobs:
   CD_DEV:
     needs: CI
     steps:
-    -  uses: ./.github/workflows/ci.yml
+    - uses: ./.github/workflows/ci.yml
       with:
         message: "Hello from CD_DEV"
 
   CD_NPE:
     needs: CD_DEV
     steps:
-    -  uses: ./.github/workflows/ci.yml
+    - uses: ./.github/workflows/ci.yml
       with:
         message: "Hello from CD_NPE"
 
   CD_PROD1:
     needs: CD_NPE
     steps:
-    -  uses: ./.github/workflows/ci.yml
+    - uses: ./.github/workflows/ci.yml
       with:
         message: "Hello from CD_PROD1"
 
   CD_PROD2:
     needs: CD_NPE
     steps:
-    -  uses: ./.github/workflows/ci.yml
+    - uses: ./.github/workflows/ci.yml
       with:
         message: "Hello from CD_PROD2"
 
