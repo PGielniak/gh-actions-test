@@ -31,9 +31,11 @@ jobs:
         run: |
           # If no environments are provided, use a default value
           if [ -z "${{ github.event.inputs.environments }}" ]; then
+            echo "ENVIRONMENT ARE EMPTY, SETTING DEFAULT VALUE"
             echo "environments=dev,npe,prod1,prod2" >> $GITHUB_ENV
             echo "environments=dev,npe,prod1,prod2" >> $GITHUB_OUTPUT
           else
+            echo "PROVIDED ENVIRONMENTS: ${{ github.event.inputs.environments }} "
             echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_ENV
             echo "environments=${{ github.event.inputs.environments }}" >> $GITHUB_OUTPUT
           fi
