@@ -1,0 +1,23 @@
+name: 'environment-prep'
+description: 'This action runs multiple steps as a composite action.'
+
+inputs:
+  message:
+    description: 'The message to display'
+    required: true
+    default: 'Hello, world!'
+
+runs:
+  using: 'composite'
+  steps:
+    # Step 1: Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Display message
+    - name: Print message
+      run: echo "${{ inputs.message }}"
+
+    # Optional Step: Running a custom script
+    - name: Run a custom script
+      run: ./scripts/script.sh

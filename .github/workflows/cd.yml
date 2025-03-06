@@ -1,0 +1,32 @@
+name: cd
+on:
+  workflow_call:  # allows to be called by another workflow
+    inputs: # parameters
+      message:
+        required: true
+        type: string
+      env_prep_msg:
+        required: true
+        type: string
+      infra_msg:
+        required: true
+        type: string
+      deployment_msg:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "${{ inputs.message }}"
+      - uses: ./actions/environment-prep
+        with:
+          message: "${{ inputs.env_prep_msg }}"
+      # - uses: ./actions/infra-deploy.yml
+      #   with:
+      #     message: "${{ inputs.infra_msg }}"
+      # - uses: ./actions/service-deploy.yml
+      #   with:
+      #     message: "${{ inputs.deployment_msg }}"

@@ -18,21 +18,23 @@ jobs:
   CD_NPE:
     needs: CD_DEV
     # runs-on: ubuntu-latest
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_NPE"
 
   CD_PROD1:
     needs: CD_NPE
+    environment: production1
     # runs-on: ubuntu-latest
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD1"
 
   CD_PROD2:
     needs: CD_NPE
+    environment: production2
     # runs-on: ubuntu-latest
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/cd.yml
     with:
         message: "Hello from CD_PROD2"
 
